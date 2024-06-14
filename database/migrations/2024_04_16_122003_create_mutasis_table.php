@@ -14,9 +14,20 @@ return new class extends Migration
         Schema::create('mutasis', function (Blueprint $table) {
             $table->uuid('id');
             $table->primary('id');
-            $table->string('jenis_kerusakan');
-            $table->timestamp('tanggal_terima');
-            $table->timestamp('tanggal_kirim');
+            // Pengirim
+            $table->string('divisi_pengirim');
+            $table->string('penanggung_jawab');
+            $table->string('dibuat_oleh');
+            // Tujuan
+            $table->string('lokasi');
+            $table->string('divisi_tujuan');
+            // Add Data mutasi
+            $table->string('nama_barang');
+            $table->string('merk');
+            $table->string('model');
+            $table->string('kategori');
+            $table->string('no_inventaris');
+            $table->string('keterangan');
             $table->timestamps();
         });
     }

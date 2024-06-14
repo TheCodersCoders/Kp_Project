@@ -10,7 +10,7 @@ class suratJalan extends Model
 {
     use HasFactory,HasUuids;
 
-    protected $fillable = [ 'nomorSurat', 'tglKirim', 'namaBarang', 'jumlahBarang'];
+    protected $fillable = [ 'nomorSurat', 'tglKirim', 'namaBarang', 'jumlahBarang','tujuanTempat'];
 
     
 }

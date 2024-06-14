@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\suratJalan;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -13,8 +14,8 @@ class SuratJalanController extends Controller
      */
     public function index()
     {
-        $suratJalan = suratJalan::all();
-        return view('suratJalan.index')->with('surat_jalans', $suratJalan);
+        $table_suratJalan = suratJalan::all();
+        return view('suratJalan.index')->with('surat_jalans', $table_suratJalan);
     }
 
     /**
@@ -24,10 +25,6 @@ class SuratJalanController extends Controller
     {
         $suratJalan = suratJalan::all();
         return view('suratJalan.create')->with('surat_jalans', $suratJalan);
-
-        
-
-
     }
 
     /**
@@ -35,13 +32,15 @@ class SuratJalanController extends Controller
      */
     public function store(Request $request)
     {
-        $this->authorize('create', suratJalan::class);
         $validateData = $request->validate([
-            'nomorSurat' => 'required|unique:suratJalans',
-            'tglKirim' => 'required',
+            'nomorSurat' => 'required|unique:surat_jalans',
+            'tglKirim' => 'required|date',
             'namaBarang' => 'required',
-            'jumlahBarang' => 'required'
+            'jumlahBarang' => 'required',
+            'tujuanTempat' => 'required'
         ]);
+
+      
 
         $suratJalan = new suratJalan();
         $suratJalan->id=Str::uuid();
@@ -49,6 +48,7 @@ class SuratJalanController extends Controller
         $suratJalan->tglKirim = $validateData['tglKirim'];
         $suratJalan->namaBarang = $validateData['namaBarang'];
         $suratJalan->jumlahBarang = $validateData['jumlahBarang'];
+        $suratJalan->tujuanTempat = $validateData['tujuanTempat'];
         $suratJalan->save();
 
         return redirect()->route('suratJalan.index')->with('success',"Data ".$validateData['nomorSurat']. " berhasil disimpan");
@@ -76,10 +76,11 @@ class SuratJalanController extends Controller
     public function update(Request $request, suratJalan $suratJalan)
     {
         $validateData = $request->validate([
-            'nomorSurat' => 'required|unique:suratJalans',
+            'nomorSurat' => 'required',
             'tglKirim' => 'required',
             'namaBarang' => 'required',
-            'jumlahBarang' => 'required'
+            'jumlahBarang' => 'required',
+            'tujuanTempat' => 'required'
         ]);
 
         $suratJalan->id=Str::uuid();
@@ -87,6 +88,7 @@ class SuratJalanController extends Controller
         $suratJalan->tglKirim = $validateData['tglKirim'];
         $suratJalan->namaBarang = $validateData['namaBarang'];
         $suratJalan->jumlahBarang = $validateData['jumlahBarang'];
+        $suratJalan->tujuanTempat = $validateData['tujuanTempat'];
         $suratJalan->save();
 
         return redirect()->route('suratJalan.index')->with('success',"Data ".$validateData['nomorSurat']. " berhasil disimpan");
@@ -98,6 +100,6 @@ class SuratJalanController extends Controller
     public function destroy(suratJalan $suratJalan)
     {
         $suratJalan->delete();
-        return redirect()->route('ikan.index')->with('success', 'Data berhasil dihapus');
+        return redirect()->route('suratJalan.index')->with('success', 'Data berhasil dihapus');
     }
 }

@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::resource('suratJalan', SuratJalanController::class );
 
 Route::get('/', function () {
-    return view('home.dashboard', [
+    return view('home.index', [
         "title" => "Home"
     ]);
 });
