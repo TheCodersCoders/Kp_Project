@@ -8,33 +8,15 @@
 
 <!-- Modal -->
 <div class="col-md-4">
-  <!-- Button trigger modal -->
-  <button type="button" class="btn bg-gradient-info btn-block" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp">
-    Tambah Data
-  </button>
-  @extends('suratJalan.modal')
+  <a href="{{ route('mutasi.create')  }}"><button
+    class="btn btn-info col-lg-5 m-2 btn-flat">Tambah Data</button> 
+  </a>
 </div>
 {{-- Akhir Modal --}}
-  <div class="row">
-    @foreach($surat_jalans as $item )
+    @foreach($mutasis as $item )
     <div class="col-lg-3">
       <div class="card card-sl" style="box-shadow: 1px 3px 3px 1px">
 
-        <div class="card-heading">
-          {{ $item->nomorSurat }}
-        </div>
-        <div class="card-text" id="formattedDate" >
-          {{ $item->tglKirim }}
-        </div>
-        <div class="card-text">
-          {{ $item->namaBarang }}
-        </div>
-        <div class="card-text">
-          {{ $item->jumlahBarang }}
-        </div>
-        <div class="card-text">
-          {{ $item->tujuanTempat }}
-        </div>
         <hr>
         <a href="{{ route('suratJalan.edit' , $item->id)  }}"><button
             class="btn btn-success col-lg-4 m-2 btn-flat">Edit</button> 
@@ -53,7 +35,7 @@
 </div>
 {{-- Akhir foreach --}}
 @endsection
-@section('title', 'Surat Jalan')
+@section('title', 'Mutasi')
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
   integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous">

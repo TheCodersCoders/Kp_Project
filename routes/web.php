@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MutasiController;
 use App\Http\Controllers\SuratJalanController;
 use App\Models\suratJalan;
 use Illuminate\Support\Facades\Route;
@@ -18,9 +19,16 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::resource('suratJalan', SuratJalanController::class );
+Route::resource('mutasi', MutasiController::class);
 
 Route::get('/', function () {
     return view('home.index', [
         "title" => "Home"
     ]);
 });
+Route::get('/test', function () {
+    return view('welcome', [
+        "title" => "Home"
+    ]);
+});
+
