@@ -15,8 +15,66 @@
 {{-- Akhir Modal --}}
     @foreach($mutasis as $item )
     <div class="col-lg-3">
-      <div class="card card-sl" style="box-shadow: 1px 3px 3px 1px">
+      {{-- Menampilkan hasil --}}
+      <div class="card card-frame">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-6">
+              {{ $item->divisi_pengirim }}
+              {{ $item->penanggung_jawab }}
+              {{ $item->dibuat_oleh }}
+            </div>
+            <div class="col-md-6">
+              {{ $item->lokasi }}
+              {{ $item->divisi_tujuan }}
+            </div>
+          </div>
+          {{-- Table --}}
 
+
+          <div class="card">
+            <div class="table-responsive">
+              <table class="table align-items-center mb-0">
+                <thead>
+                  <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Nama Barang</th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Merk</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Model</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kategori</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">No Inventaris</th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Keterangan</th>
+                    <th class="text-secondary opacity-7"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{ $item->nama_barang }}</p>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{ $item->merk }}</p>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{ $item->model }}</p>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{ $item->kategori }}</p>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{ $item->no_inventaris }}</p>
+                    </td>
+                    <td>
+                      <p class="text-xs font-weight-bold mb-0">{{ $item->keterangan }}</p>
+                    </td>
+                    
+          {{-- Akhir table --}}
+          
+        </div>
+      </div>
+      {{-- Akhir Menampilkan hasil --}}
+      <div class="card card-sl" style="box-shadow: 1px 3px 3px 1px">
         <hr>
         <a href="{{ route('suratJalan.edit' , $item->id)  }}"><button
             class="btn btn-success col-lg-4 m-2 btn-flat">Edit</button> 

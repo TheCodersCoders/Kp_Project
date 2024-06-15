@@ -76,7 +76,7 @@
             <i class="material-icons opacity-10">view_in_ar</i>
           </div>
 
-          <span class="nav-link-text ms-1">Repeat Order</span>
+          <span class="nav-link-text ms-1">History</span>
         </a>
       </li>
 
