@@ -31,43 +31,36 @@
   </div>
  {{-- Akhir Tujuan --}}
  {{-- Data Mutasi --}}
- <div class="row">
-  <h3>Tambah Data</h3>
-  <div class="col-md-6">
-    <div class="input-group input-group-outline my-3">
-      <input type="text" class="form-control" placeholder="Nama Barang" id="nama_barang" name="nama_barang">
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="input-group input-group-outline my-3">
-      <input type="text" class="form-control" placeholder="Model" id="model" name="model">
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-6">
-    <div class="input-group input-group-outline my-3">
-      <input type="text" class="form-control" placeholder="Merk" id="merk" name="merk">
-    </div>
-  </div>
-  <div class="col-md-6">
-    <div class="input-group input-group-outline my-3">
-      <input type="text" class="form-control" placeholder="Nomor Inventaris" id="no_inventaris" name="no_inventaris">
-    </div>
-  </div>
-  <div class="col-md-12">
-    <select class="form-select" aria-label="Default select example" aria-placeholder="Kategori" id="kategori" name="kategori">
-      <option value="1" >Baru</option>
-      <option value="2">Mutasi</option>
-      <option value="3">Rusak</option>
-    </select>
-  </div>
-  <div class="col-md-12">
-    <div class="input-group input-group-outline my-3" id="keterangan" name="keterangan">
-      <input type="text" class="form-control" placeholder="Keterangan">
-    </div>
-  </div>
-</div>
+ <button type="button" class="btn bg-gradient-info btn-block col-3" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp">
+  Tambah Data Mutasi
+</button>
+@extends('mutasi.modal')
+ <table class="table mb-4">
+  <thead>
+    <tr>
+      <th scope="col">No</th>
+      <th scope="col">Nama Barang</th>
+      <th scope="col">Merk</th>
+      <th scope="col">Model</th>
+      <th scope="col">Kategori</th>
+      <th scope="col">Nomor Inventaris</th>
+      <th scope="col">Keterangan</th>
+    </tr>
+  </thead>
+  <tbody>
+    @foreach ($mutasis as $item )
+    <tr>
+      <th scope="row">{{ $item->id }}</th>
+      <td>{{ $item->nama_barang }}/td>
+      <td>{{ $item->merk }}</td>
+      <td>{{ $item->model }}</td>
+      <td>{{ $item->kategori }}</td>
+      <td>{{ $item->no_inventaris }}</td>
+      <td>{{ $item->keterangan }}</td>
+    </tr>
+    @endforeach
+  </tbody>
+</table>
  {{-- Akhir Data Mutasi --}}
  <div class="text-center tombol col-md-12">
   <button type="submit" class="btn bg-gradient-primary btn-lg w-100 mt-1 mb-0 ">Submit</button>

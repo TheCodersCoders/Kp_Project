@@ -62,7 +62,7 @@ class MutasiController extends Controller
         $mutasi->keterangan = $validateData['keterangan'];
         $mutasi->save();
 
-        return redirect()->route('mutasi.index')->with('success', "Data", $validateData['no_inventaris'], "Berhasil disimpan");
+        return redirect()->route('mutasi.index')->with('success', "Data", $validateData['kategori'], "Berhasil disimpan");
 
        
     }
