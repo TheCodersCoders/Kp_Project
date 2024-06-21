@@ -7,44 +7,47 @@
   {{-- Modal --}}
 
 <!-- Modal -->
-<div class="col-md-4">
   <!-- Button trigger modal -->
-  <button type="button" class="btn bg-gradient-info btn-block" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp">
-    Tambah Data
-  </button>
-  @extends('suratJalan.modal')
-</div>
+  <div class="col-md-4">
+    <a href="{{ route('suratJalan.create')  }}"><button
+      class="btn btn-info col-lg-5 m-2 btn-flat">Tambah Data</button> 
+    </a>
+  </div>
 {{-- Akhir Modal --}}
   <div class="row">
     @foreach($surat_jalans as $item )
     <div class="col-lg-3">
       <div class="card card-sl" style="box-shadow: 1px 3px 3px 1px">
 
-        <div class="card-heading">
-          {{ $item->nomorSurat }}
+        <div class="card-title text-center">
+          <h4>{{ $item->nomorSurat }}</h4>
+          <hr style="border: 1px solid black">
         </div>
         <div class="card-text" id="formattedDate" >
-          {{ $item->tglKirim }}
+          <h6 class="card-subtitle text-body-secondary text-right" id="formattedDate">{{ $item->tglKirim }}</h6>
         </div>
-        <div class="card-text">
-          {{ $item->namaBarang }}
+        <div class="card-text m-1">
+         Nama : {{ $item->namaBarang }}
         </div>
-        <div class="card-text">
-          {{ $item->jumlahBarang }}
+        <div class="card-text m-1" id="">
+        Total :  {{ $item->jumlahBarang }}
         </div>
-        <div class="card-text">
-          {{ $item->tujuanTempat }}
+        <div class="card-text m-1">
+         Lokasi {{ $item->tujuanTempat }}
         </div>
-        <hr>
-        <a href="{{ route('suratJalan.edit' , $item->id)  }}"><button
-            class="btn btn-success col-lg-4 m-2 btn-flat">Edit</button> 
+        <hr style="border: 1px solid black">
+        <div class="d-flex justify-content-between align-items-center m-3">
+          <a href="{{ route('suratJalan.edit' , $item->id)  }}"><button
+            class="btn btn-success col btn-flat">Edit</button> 
           </a>
         <form method="POST" class="delete-form" action="{{ route('suratJalan.destroy', $item->id) }}">
           @method('delete')
           @csrf
-          <button type="submit" class="btn btn-danger btn-flat show_confirm col-lg-5 m-2" data-toggle="tooltip"
+          <button type="submit" class="btn btn-danger show_confirm col mt-2 " data-toggle="tooltip"
             title='Delete'>Delete</button>
         </form>
+        </div>
+        
       </div>
     </div>
     @endforeach

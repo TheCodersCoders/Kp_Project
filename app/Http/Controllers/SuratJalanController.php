@@ -33,17 +33,17 @@ class SuratJalanController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-            'nomorSurat' => 'required|unique:surat_jalans',
+            'nomorSurat' => 'required|unique:surat_jalans|min:6',
             'tglKirim' => 'required|date',
             'namaBarang' => 'required',
             'jumlahBarang' => 'required',
             'tujuanTempat' => 'required'
         ]);
 
-      
+
 
         $suratJalan = new suratJalan();
-        $suratJalan->id=Str::uuid();
+        $suratJalan->id = Str::uuid();
         $suratJalan->nomorSurat = $validateData['nomorSurat'];
         $suratJalan->tglKirim = $validateData['tglKirim'];
         $suratJalan->namaBarang = $validateData['namaBarang'];
@@ -51,15 +51,16 @@ class SuratJalanController extends Controller
         $suratJalan->tujuanTempat = $validateData['tujuanTempat'];
         $suratJalan->save();
 
-        return redirect()->route('suratJalan.index')->with('success',"Data ".$validateData['nomorSurat']. " berhasil disimpan");
+        return redirect()->route('suratJalan.index')->with('success', "Data " . $validateData['nomorSurat'] . " berhasil disimpan");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(suratJalan $suratJalan)
     {
-        //
+        return view('suratJalan.modal')->with('suratJalan', $suratJalan);
+
     }
 
     /**
@@ -83,7 +84,7 @@ class SuratJalanController extends Controller
             'tujuanTempat' => 'required'
         ]);
 
-        $suratJalan->id=Str::uuid();
+        $suratJalan->id = Str::uuid();
         $suratJalan->nomorSurat = $validateData['nomorSurat'];
         $suratJalan->tglKirim = $validateData['tglKirim'];
         $suratJalan->namaBarang = $validateData['namaBarang'];
@@ -91,7 +92,7 @@ class SuratJalanController extends Controller
         $suratJalan->tujuanTempat = $validateData['tujuanTempat'];
         $suratJalan->save();
 
-        return redirect()->route('suratJalan.index')->with('success',"Data ".$validateData['nomorSurat']. " berhasil disimpan");
+        return redirect()->route('suratJalan.index')->with('success', "Data " . $validateData['nomorSurat'] . " berhasil disimpan");
     }
 
     /**
