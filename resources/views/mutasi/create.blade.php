@@ -3,8 +3,39 @@
 @section('title', 'Mutasi')
 @section('page1','Mutasi')
 
+
 <form action="{{ route('mutasi.store') }}" method="post" enctype="multipart/form-data">
   @csrf
+  <button type="button" class="btn bg-gradient-info btn-block col-3" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp">
+    Tambah Data Mutasi
+  </button>
+  @extends('mutasi.modal')
+   <table class="table mb-4">
+    <thead>
+      <tr>
+        <th scope="col">No</th>
+        <th scope="col">Nama Barang</th>
+        <th scope="col">Merk</th>
+        <th scope="col">Model</th>
+        <th scope="col">Kategori</th>
+        <th scope="col">Nomor Inventaris</th>
+        <th scope="col">Keterangan</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach ($mutasis as $item )
+      <tr>
+        <th scope="row">{{ $item->id }}</th>
+        <td>{{ $item->nama_barang }}/td>
+        <td>{{ $item->merk }}</td>
+        <td>{{ $item->model }}</td>
+        <td>{{ $item->kategori }}</td>
+        <td>{{ $item->no_inventaris }}</td>
+        <td>{{ $item->keterangan }}</td>
+      </tr>
+      @endforeach
+    </tbody>
+  </table>
   {{-- Pengirim --}}
   <div class="pengirim">
     <h3 class="mt-2">Pengirim</h3>
@@ -31,36 +62,6 @@
   </div>
  {{-- Akhir Tujuan --}}
  {{-- Data Mutasi --}}
- <button type="button" class="btn bg-gradient-info btn-block col-3" data-bs-toggle="modal" data-bs-target="#exampleModalSignUp">
-  Tambah Data Mutasi
-</button>
-@extends('mutasi.modal')
- <table class="table mb-4">
-  <thead>
-    <tr>
-      <th scope="col">No</th>
-      <th scope="col">Nama Barang</th>
-      <th scope="col">Merk</th>
-      <th scope="col">Model</th>
-      <th scope="col">Kategori</th>
-      <th scope="col">Nomor Inventaris</th>
-      <th scope="col">Keterangan</th>
-    </tr>
-  </thead>
-  <tbody>
-    @foreach ($mutasis as $item )
-    <tr>
-      <th scope="row">{{ $item->id }}</th>
-      <td>{{ $item->nama_barang }}/td>
-      <td>{{ $item->merk }}</td>
-      <td>{{ $item->model }}</td>
-      <td>{{ $item->kategori }}</td>
-      <td>{{ $item->no_inventaris }}</td>
-      <td>{{ $item->keterangan }}</td>
-    </tr>
-    @endforeach
-  </tbody>
-</table>
  {{-- Akhir Data Mutasi --}}
  <div class="text-center tombol col-md-12">
   <button type="submit" class="btn bg-gradient-primary btn-lg w-100 mt-1 mb-0 ">Submit</button>

@@ -32,7 +32,6 @@ class MutasiController extends Controller
     public function store(Request $request)
     {
         $validateData = $request->validate([
-           'tanggal_kirim' => 'required',
            'divisi_pengirim' => 'required',
            'penanggung_jawab' => 'required',
            'dibuat_oleh' => 'required',
@@ -48,7 +47,6 @@ class MutasiController extends Controller
 
         $mutasi = new Mutasi();
         $mutasi->id=Str::uuid();
-        $mutasi->tanggal_kirim = $validateData['tanggal_kirim'];
         $mutasi->divisi_pengirim = $validateData['divisi_pengirim'];
         $mutasi->penanggung_jawab = $validateData['penanggung_jawab'];
         $mutasi->dibuat_oleh = $validateData['dibuat_oleh'];
